@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kursus extends Model
 {
-    protected $table = "courses"; // Ensure the table name matches the migration
+    protected $table = "kursuses"; // Ensure the table name matches the migration
 
     protected $fillable = [
         'nama',
@@ -20,8 +20,7 @@ class Kursus extends Model
         'harga',
         'sertifikat',
         'siswa_terdaftar',
-        'jumlah_siswa',
-        'pengajar_id'
+        'jumlah_siswa'
     ];
     
 }

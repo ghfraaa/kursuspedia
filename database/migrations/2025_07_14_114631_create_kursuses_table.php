@@ -25,7 +25,6 @@ return new class extends Migration {
             $table->boolean('sertifikat')->default(false);
             $table->integer('siswa_terdaftar');
             $table->integer('jumlah_siswa')->default(0);
-            $table->foreignId('pengajar_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
 

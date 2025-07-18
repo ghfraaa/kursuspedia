@@ -14,6 +14,13 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
+     protected function authenticated(Request $request, $user)
+    {
+        if (auth()->user()->role === 'admin') {
+            return route('admin.dashboard');
+        }
+        return route('kursus.index');
+    }
     public function create(): View
     {
         return view('auth.login');
@@ -28,9 +35,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // Redirect ke home setelah login berhasil
-        // Laravel akan otomatis mengarahkan ke halaman yang sesuai berdasarkan role
-        return redirect()->intended(route('home', absolute: false));
+        return redirect()->intended($this->redirectTo());
     }
 
     /**
@@ -44,7 +49,17 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        // Redirect ke home (akan menampilkan halaman welcome untuk guest)
-        return redirect()->route('home');
+        return redirect('/');
+    }
+
+    /**
+     * Get the post-login redirect path.
+     */
+    protected function redirectTo()
+    {
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return route('admin.dashboard');
+        }
+        return route('kursus.index');
     }
 }
