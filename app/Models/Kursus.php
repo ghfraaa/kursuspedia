@@ -23,7 +23,8 @@ class Kursus extends Model
         'jumlah_siswa'
     ];
 
-    public function reviews() {
+    public function reviews()
+    {
         return $this->hasMany(Review::class);
     }
 
@@ -32,6 +33,12 @@ class Kursus extends Model
         return $this->hasMany(Transaction::class);
     }
 
+    // App\Models\Kursus.php
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'transactions', 'kursus_id', 'user_id')
+            ->withPivot('status');
+    }
 
-    
+
 }

@@ -55,5 +55,12 @@ class User extends Authenticatable
     public function reviews() {
         return $this->hasMany(Review::class);
     }
+    // App\Models\User.php
+public function kursuses()
+{
+    return $this->belongsToMany(Kursus::class, 'transactions', 'user_id', 'kursus_id')
+        ->withPivot('status');
+}
+
 
 }

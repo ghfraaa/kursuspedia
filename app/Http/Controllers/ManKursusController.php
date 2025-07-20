@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
+
 class ManKursusController extends Controller
 {
     /**
@@ -52,24 +53,24 @@ class ManKursusController extends Controller
         // Handle image upload
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
-            
+
             // Generate unique filename
             $imageName = time() . '_' . Str::random(10) . '.' . $image->getClientOriginalExtension();
-            
+
             // Pastikan folder kursus exist
             $kursusPath = storage_path('app/public/kursus');
             if (!file_exists($kursusPath)) {
                 mkdir($kursusPath, 0755, true);
             }
-            
+
             // Store file menggunakan disk public
             $stored = $image->storeAs('kursus', $imageName, 'public');
-            
+
             // Debug: log untuk memastikan file tersimpan
             \Log::info('File stored: ' . $stored);
             \Log::info('Full path: ' . storage_path('app/public/kursus/' . $imageName));
             \Log::info('File exists: ' . (file_exists(storage_path('app/public/kursus/' . $imageName)) ? 'YES' : 'NO'));
-            
+
             // Pastikan file benar-benar tersimpan
             if ($stored && file_exists(storage_path('app/public/kursus/' . $imageName))) {
                 $data['gambar'] = $imageName;
@@ -87,9 +88,16 @@ class ManKursusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kursus $kursus)
+    public function show( $id)
     {
-        return view('admin.kursus.show', compact('kursus'));
+        $kursus = Kursus::findOrFail($id);
+        $user = auth()->user();
+
+        $siswa_terdaftar = $kursus->users()
+            ->wherePivotIn('status', ['diterima', 'selesai'])
+            ->get();
+
+        return view('admin.kursus.show', compact('kursus', 'siswa_terdaftar'));
     }
 
     /**
@@ -127,19 +135,19 @@ class ManKursusController extends Controller
             if ($kursus->gambar && file_exists(storage_path('app/public/kursus/' . $kursus->gambar))) {
                 unlink(storage_path('app/public/kursus/' . $kursus->gambar));
             }
-            
+
             $image = $request->file('gambar');
             $imageName = time() . '_' . Str::random(10) . '.' . $image->getClientOriginalExtension();
-            
+
             // Pastikan folder kursus exist
             $kursusPath = storage_path('app/public/kursus');
             if (!file_exists($kursusPath)) {
                 mkdir($kursusPath, 0755, true);
             }
-            
+
             // Store file menggunakan disk public
             $stored = $image->storeAs('kursus', $imageName, 'public');
-            
+
             if ($stored && file_exists(storage_path('app/public/kursus/' . $imageName))) {
                 $data['gambar'] = $imageName;
             } else {

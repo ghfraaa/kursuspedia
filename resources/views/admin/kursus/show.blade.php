@@ -192,7 +192,7 @@
                         </svg>
                         Edit Kursus
                     </a>
-                    <a href="#" class="w-full flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                    <a href="#daftar_siswa" class="w-full flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                         </svg>
@@ -270,6 +270,26 @@
                         <p class="text-sm text-gray-600">Berakhir {{ $end->diffForHumans() }}</p>
                     @endif
                 </div>
+            </div>
+            <div id="daftar_siswa" class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Peserta Terdaftar</h3>
+                @if($siswa_terdaftar->isEmpty())
+                    <p class="text-sm text-gray-600 text-center">Belum ada peserta yang mendaftar.</p>
+                @else
+                    <ul class="divide-y divide-gray-100">
+                        @foreach($siswa_terdaftar as $siswa)
+                            <li class="py-2 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-semibold uppercase">
+                                        {{ strtoupper(substr($siswa->name, 0, 1)) }}
+                                    </div>
+                                    <span class="text-sm font-medium text-gray-900">{{ $siswa->name }}</span>
+                                </div>
+                                <span class="text-sm text-gray-500">{{ $siswa->email }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
             </div>
         </div>
     </div>
