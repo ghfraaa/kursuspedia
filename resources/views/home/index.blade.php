@@ -91,14 +91,7 @@
                         </svg>
                         <span class="sr-only">Facebook</span>
                     </a>
-                    <a href="#" class="text-gray-500 hover:text-gray-900 transition-colors duration-200">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path fill-rule="evenodd"
-                                d="M12.315 2c2.43 0 2.784.002 3.797.048.843.04 1.15.148 1.465.247.54.185.92.356 1.356.672.435.317.75.7.96 1.165.21.465.344.92.395 1.425.051.505.071.676.071 4.22 0 .505-.02 1.425-.07 1.93-.05.505-.184.96-.394 1.425-.21.465-.525.848-.96 1.165-.436.317-.817.488-1.356.672-.315.099-.62.207-1.465.247-1.013.047-1.367.048-3.797.048S9.52 22.002 8.507 21.956c-.843-.04-1.15-.148-1.465-.247-.54-.185-.92-.356-1.356-.672-.435-.317-.75-.7-.96-1.165-.21-.465-.344-.92-.395-1.425-.051-.505-.071-.676-.071-4.22 0-.505.02-1.425.07-1.93.05-.505.184-.96.394-1.425.21-.465.525-.848.96-1.165.436-.317.817-.488 1.356-.672.315-.099.62-.207 1.465-.247C9.52 1.998 9.874 2 12.315 2zm0 0l.005 3.518c0 2.457-1.357 3.557-3.798 3.557-.59 0-1.18-.002-1.77-.004-.59-.002-1.18-.004-1.77-.006-.59-.002-1.18-.004-1.77-.006V6.002h.005c.59 0 1.18.002 1.77.004.59.002 1.18.004 1.77.006.59.002 1.18.004 1.77.006z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <span class="sr-only">Twitter</span>
-                    </a>
+                    
                     <a href="#" class="text-gray-500 hover:text-gray-900 transition-colors duration-200">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path fill-rule="evenodd"
@@ -115,24 +108,22 @@
                 <ul class="space-y-2 text-gray-600">
                     <li><a href="#home" class="hover:text-indigo-600 transition-colors duration-200">Beranda</a></li>
                     <li><a href="#kursus" class="hover:text-indigo-600 transition-colors duration-200">Kursus</a></li>
-                    <li><a href="#testimoni" class="hover:text-indigo-600 transition-colors duration-200">Testimoni</a>
-                    </li>
-                    <li><a href="#team" class="hover:text-indigo-600 transition-colors duration-200">Tim Kami</a></li>
+                    <li><a href="#testimoni" class="hover:text-indigo-600 transition-colors duration-200">Testimoni</a></li>
                 </ul>
             </div>
 
             <div>
                 <h3 class="text-lg font-bold text-gray-900 mb-4">Other</h3>
                 <ul class="space-y-2 text-gray-600">
-                    <li><a href="#home" class="hover:text-indigo-600 transition-colors duration-200">About Us</a></li>
-                    <li><a href="#team" class="hover:text-indigo-600 transition-colors duration-200">Our Team</a></li>
+                    <li><a href="#about" class="hover:text-indigo-600 transition-colors duration-200">Tentang Kami</a></li>
+                    <li><a href="#team" class="hover:text-indigo-600 transition-colors duration-200">Tim Kami</a></li>
                 </ul>
             </div>
 
             <div class="space-y-4">
                 <div class="flex items-center space-x-3">
                     <i class="fa-solid fa-phone text-indigo-600 text-lg"></i>
-                    <p class="text-gray-600">+45 3411-4411</p>
+                    <p class="text-gray-600">+12345678</p>
                 </div>
                 <div class="flex items-center space-x-3">
                     <svg class="w-6 h-6 text-indigo-600 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"
@@ -141,7 +132,7 @@
                             d="M1.5 4.5A2.25 2.25 0 013.75 2.25h16.5A2.25 2.25 0 0122.5 4.5v15a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 19.5v-15zM20.25 7.5L12 12.75 3.75 7.5V6h16.5v1.5z"
                             clip-rule="evenodd" />
                     </svg>
-                    <p class="text-gray-600">info@gmail.com</p>
+                    <p class="text-gray-600">info@kursuspedia.id</p>
                 </div>
             </div>
         </div>

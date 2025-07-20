@@ -2,34 +2,84 @@
     <div class="max-w-6xl mx-auto px-8">
         <div class="text-center mb-12">
             <h2 class="text-3xl lg:text-4xl font-bold text-indigo-600 mb-4">
-                Tentang <span class="text-4xl font-bold text-gray-800">KursusPedia<span
-                        class="text-indigo-600">.</span></span>
-
+                Tentang <span class="text-gray-800 text-4xl">KursusPedia<span
+                    class="text-indigo-600">.</span></span>
             </h2>
-            <div class="w-24 h-1 bg-indigo-600 mx-auto mb-6"></div>
+            <div
+                class="w-32 h-1.5 bg-[linear-gradient(to_right,_#a855f7,_#4f46e5)] mx-auto mb-6 rounded-full">
+            </div>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Platform pembelajaran revolusioner untuk masa depan pendidikan
+            </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start justify-between ">
-            <div class="space-y-6">
-                <p class="text-lg text-gray-700 leading-relaxed leading-relaxed text-justify">
-                    <strong class="text-2xl font-bold text-gray-800">KursusPedia<span class="text-indigo-600">.</span>
-                    </strong> adalah platform pembelajaran yang menyediakan berbagai metode belajar
-                    fleksibel - online, offline, dan hybrid - untuk memenuhi keragaman kebutuhan pembelajaran setiap
-                    individu. Kami berkomitmen untuk memberikan akses pendidikan berkualitas tinggi kepada semua
-                    kalangan, dengan pilihan format pembelajaran yang sesuai dengan preferensi dan situasi Anda.
-                </p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start justify-between">
+            <div class="space-y-8">
+                <div class="glassmorphism rounded-3xl p-8 shadow-2xl hover-lift">
+                    <p class="text-lg text-gray-700 leading-relaxed text-justify mb-6">
+                        <strong class="text-3xl font-black text-gray-800 block mb-4 text-gradient">
+                            KursusPedia<span class="text-indigo-600">.</span>
+                        </strong>
+                        adalah platform pembelajaran yang menyediakan berbagai metode belajar
+                        fleksibel - online, offline, dan hybrid - untuk memenuhi keragaman kebutuhan pembelajaran setiap individu.
+                    </p>
 
+                    <div
+                        class="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-2xl p-6 border-l-4 border-indigo-500">
+                        <p class="text-gray-700 leading-relaxed">
+                            Kami berkomitmen untuk memberikan akses pendidikan berkualitas tinggi kepada semua
+                            kalangan, dengan pilihan format pembelajaran yang sesuai dengan preferensi dan situasi Anda.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="relative max-w-md">
-                <img src="{{ asset('image/ilustrasi.png') }}" alt="About KursusPedia"
-                    class="w-full h-auto object-cover rounded-lg shadow-lg">
-                <div class="absolute -bottom-4 -right-4 bg-indigo-600 text-white p-4 rounded-lg shadow-lg">
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        <span class="font-semibold">4.8/5 Rating</span>
+
+            <div class="relative max-w-md mx-auto">
+                <!-- Floating decorative elements -->
+                <div
+                    class="absolute -top-8 -left-8 w-24 h-24 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full opacity-20 floating-animation">
+                </div>
+                <div class="absolute -bottom-8 -right-8 w-20 h-20 bg-gradient-to-r from-pink-400 to-red-500 rounded-full opacity-20 floating-animation"
+                    style="animation-delay: -3s;"></div>
+
+                <!-- Main image container -->
+                <div class="relative glassmorphism rounded-3xl p-4 shadow-2xl hover-lift">
+                    <img src="{{ asset('image/ilustrasi.png') }}" alt="About KursusPedia"
+                        class="w-full h-auto object-cover rounded-2xl shadow-lg">
+
+                    <!-- Enhanced rating badge -->
+                    <div class="absolute -bottom-6 -right-6">
+                        <div
+                            class="bg-[linear-gradient(to_right,_#4f46e5,_#a855f7)] text-white p-5 rounded-2xl shadow-2xl pulse-glow">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex space-x-1">
+                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-black text-xl">4.8/5</div>
+                                    <div class="text-sm opacity-90 font-medium">Rating</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -195,7 +245,8 @@
             <div class="text-center group">
                 <div
                     class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
-                    <div class="text-4xl font-bold text-green-600 mb-2" data-count="{{ $kursuses->sum('siswa_terdaftar') }}">0</div>
+                    <div class="text-4xl font-bold text-green-600 mb-2"
+                        data-count="{{ $kursuses->sum('siswa_terdaftar') }}">0</div>
                     <p class="text-gray-600 font-semibold">Siswa Aktif</p>
                 </div>
             </div>
