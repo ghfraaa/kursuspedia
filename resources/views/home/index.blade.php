@@ -9,42 +9,20 @@
         <div class="lg:w-1/2 text-center lg:text-left p-4">
             <div
                 class="bg-green-100 text-green-700 text-sm font-medium px-3 py-1 rounded-full inline-flex items-center mb-4">
-                <svg class="w-3 h-3 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                    viewBox="0 0 20 20">
-                    <path
-                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                </svg>
-                Get 30% off on first enroll
+                <i class="fi fi-ss-rocket-lunch"></i>
+                <span class="ms-2">Kuasai Skill Baru, Tanpa Ribet</span>
             </div>
-            <h1 class="text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-6">Advance your <span
-                    class="text-indigo-600">engineering skills</span> with us.</h1>
-            <p class="text-lg text-gray-600 mb-8 max-w-md mx-auto lg:mx-0">Build skills with our courses and mentor from
-                world-class companies.</p>
+            <h1 class="text-4xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">Advance your <span
+                    class="text-indigo-600">skills</span> <span class="lg:text-5xl">with us.</span></h1>
+            <p class="text-lg text-gray-600 mb-8 max-w-md mx-auto lg:mx-0 text-justify">Jelajahi berbagai kursus pilihan yang dirancang
+                untuk membantu kamu berkembang dan siap menghadapi dunia nyata.</p>
 
-            <form id="search-form-hero" class="flex items-center max-w-xl lg:mx-0 mx-auto mt-8">
-                <label for="search-input" class="sr-only">Search</label>
-                <div class="relative w-full">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-5 h-5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                    </div>
-                    <input type="text" id="search-input-hero"
-                        class="bg-white border border-gray-300 text-gray-900 text-base rounded-full focus:ring-indigo-500 focus:border-indigo-500 block w-full ps-10 p-4 shadow-md"
-                        placeholder="Cari kursus..." required />
-                </div>
+            <div id="search-form-hero" class="flex items-center max-w-xl lg:mx-0 mx-auto mt-8">
                 <a href="#kursus"
-                    class="p-4 ms-2 text-md font-medium text-white bg-indigo-600 rounded-full border border-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 transition-colors duration-200 transform hover:scale-105">
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                    </svg>
-                    <span class="sr-only">Search</span>
+                    class="flex inline-flex p-4 ms-2 text-md font-medium text-white bg-[linear-gradient(to_right,_#a855f7,_#4f46e5)] hover:bg-[linear-gradient(to_right,_#4f46e5,_#a855f7)] rounded-full border border-transparent focus:ring-4 focus:outline-none focus:ring-indigo-300 transition-all duration-700 ease-in-out transform hover:scale-105">
+                    Mulai Jelajahi Kursus <i class="fi fi-sr-arrow-circle-right text-xl ms-2 w-6 h-6"></i>
                 </a>
-            </form>
+            </div>
 
             <div class="flex flex-wrap justify-center lg:justify-start gap-6 mt-8">
                 <div class="flex items-center space-x-2 text-gray-700">
@@ -53,7 +31,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <span>Flexible</span>
+                    <span>Fleksibel</span>
                 </div>
                 <div class="flex items-center space-x-2 text-gray-700">
                     <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -61,7 +39,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <span>Learning path</span>
+                    <span>Materi Terstruktur</span>
                 </div>
                 <div class="flex items-center space-x-2 text-gray-700">
                     <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -69,7 +47,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <span>Community</span>
+                    <span>Sertifikat</span>
                 </div>
             </div>
         </div>
@@ -79,6 +57,8 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    @include('home.partials.about-section')
 
     <!-- Courses Section -->
     @include('home.partials.course-section')

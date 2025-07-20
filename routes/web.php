@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\ManKursusController;
 use App\Models\Kursus;
+Use App\Http\Controllers\ReviewController;
 
 // Route utama yang dapat diakses guest dan user yang sudah login
 Route::get('/', [KursusController::class, 'index'])->name('kursus.index');
@@ -17,6 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/kursus/{id}/review', [ReviewController::class, 'store'])->name('review.store');
 });
 
 Route::get('/kursus/{kursus}', [KursusController::class, 'show'])->name('kursus.show');

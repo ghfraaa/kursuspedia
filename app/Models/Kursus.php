@@ -22,5 +22,16 @@ class Kursus extends Model
         'siswa_terdaftar',
         'jumlah_siswa'
     ];
+
+    public function reviews() {
+        return $this->hasMany(Review::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+
     
 }

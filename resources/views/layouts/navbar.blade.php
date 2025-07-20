@@ -1,4 +1,4 @@
-<nav class="flex items-center justify-between px-8 py-4">
+<nav class="flex items-center sticky-top justify-between px-8 py-4">
     <div class="flex items-center space-x-2">
         <img src="{{ asset('image/KURSUSPEDIAlogo.png') }}" alt="KursusPedia Logo" class="h-10 w-10"> <span
             class="text-2xl font-bold text-gray-800">KursusPedia<span class="text-indigo-600">.</span></span>

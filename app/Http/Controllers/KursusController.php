@@ -7,18 +7,60 @@ use Illuminate\Http\Request;
 use App\Models\Kursus;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Review;
+use App\Models\User;
 
 class KursusController extends Controller
 {
     public function index()
     {
         $kursuses = Kursus::all(); // ambil semua kursus
-        return view('home.index', compact('kursuses'));
+        
+        // Ambil review terbaru untuk testimoni section
+        $testimoni_reviews = Review::with(['user', 'kursus'])
+            ->latest()
+            ->limit(6) // Ambil 6 review terbaru untuk 2 slide (3 per slide)
+            ->get();
+        
+        return view('home.index', compact('kursuses', 'testimoni_reviews'));
     }
 
-    public function show(Kursus $kursus)
+    public function show($id)
     {
-        return view('home.partials.show', compact('kursus'));
+        $kursus = Kursus::findOrFail($id);
+        $user = auth()->user();
+
+        $sudah_terdaftar = false;
+        $sudah_memberi_review = false;
+        $review_user = null;
+        $belum_beli = true; // Default: user belum beli
+
+        if ($user && $user->role !== 'admin') {
+            // Cek apakah user sudah terdaftar dengan status 'diterima'
+            $sudah_terdaftar = Transaction::where('user_id', $user->id)
+                ->where('kursus_id', $kursus->id)
+                ->where('status', 'diterima') // HANYA status diterima
+                ->exists();
+
+            // Cek apakah user pernah mendaftar kursus ini (dengan status apapun)
+            $pernah_mendaftar = Transaction::where('user_id', $user->id)
+                ->where('kursus_id', $kursus->id)
+                ->exists();
+
+            // Jika user pernah mendaftar tapi belum diterima, maka belum_beli = false
+            // Jika user belum pernah mendaftar sama sekali, maka belum_beli = true
+            $belum_beli = !$pernah_mendaftar;
+
+            $review_user = Review::where('user_id', $user->id)
+                ->where('kursus_id', $kursus->id)
+                ->first();
+
+            $sudah_memberi_review = $review_user !== null;
+        }
+
+        $all_reviews = $kursus->reviews()->with('user')->latest()->get();
+
+        return view('home.partials.show', compact('kursus', 'sudah_terdaftar', 'sudah_memberi_review', 'review_user', 'all_reviews', 'belum_beli'));
     }
 
     public function enroll(Request $request, Kursus $kursus)
@@ -117,5 +159,4 @@ class KursusController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Bukti pembayaran gagal diunggah. Silahkan coba lagi');
     }
-
 }
