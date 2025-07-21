@@ -35,7 +35,7 @@
 
         <!-- Page Heading -->
         @hasSection('header')
-            <header class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 shadow-lg">
+            <header class="sticky top-0 z-50 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 shadow-lg">
                 <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
                     @yield('header')
                 </div>

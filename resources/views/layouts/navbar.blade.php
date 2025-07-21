@@ -1,4 +1,4 @@
-<nav class="flex items-center sticky-top justify-between px-8 py-4">
+<nav class="flex items-center fixed top-0 left-0 right-0 z-50 justify-between px-8 py-4 bg-white shadow-sm">
     <div class="flex items-center space-x-2">
         <img src="{{ asset('image/KURSUSPEDIAlogo.png') }}" alt="KursusPedia Logo" class="h-10 w-10"> <span
             class="text-2xl font-bold text-gray-800">KursusPedia<span class="text-indigo-600">.</span></span>
@@ -13,7 +13,7 @@
         @if (Route::has('login'))
             <nav class="flex items-center justify-end gap-3">
                 @auth
-                    <a href="{{ url('/dashboard') }}"
+                    <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : url('/dashboard') }}"
                         class="text-indigo-600 hover:text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5">
                         Dashboard
                     </a>
@@ -81,7 +81,7 @@
     </button>
 </nav>
 
-<div class="hidden w-full lg:hidden" id="navbar-default">
+<div class="hidden w-full lg:hidden bg-white fixed top-0 left-0 right-0 z-40 h-screen overflow-y-auto pt-20 pb-4" id="navbar-default">
     <ul class="font-medium flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 space-y-2">
         <li><a href="#home" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100">Beranda</a></li>
         <li><a href="#kursus" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100">Kursus</a></li>
@@ -130,3 +130,4 @@
         @endif
     </ul>
 </div>
+

@@ -3,7 +3,7 @@
 @section('content')
 @include('layouts.navbar')
 <div class="min-h-screen bg-gray-50">
-    <div class="py-8">
+    <div class="py-8 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Alert Messages -->
             @if (session('success'))
@@ -134,7 +134,7 @@
                                                         @if ($transaction->status == 'belum_dibayar')
                                                             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
                                                                 <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2A9 9 0 111 10a9 9 0 0118 0z"></path>
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
                                                                 </svg>
                                                                 Belum Dibayar
                                                             </span>

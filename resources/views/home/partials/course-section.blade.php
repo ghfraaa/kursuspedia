@@ -111,13 +111,6 @@
                         {{ $kursus->kategori ?? 'Umum' }}
                     </span>
                 </div>
-
-                <!-- Price Badge -->
-                <div class="absolute top-4 right-4">
-                    <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-bold bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg">
-                        IDR {{ number_format($kursus->harga ?? 0, 0, ',', '.') }}
-                    </span>
-                </div>
             </div>
 
             <!-- Content Container -->
@@ -164,11 +157,11 @@
                         
                         <!-- Rating Text -->
                         <span class="text-sm font-semibold text-gray-700">
-                            {{ $roundedRating > 0 ? $roundedRating : 'N/A' }}
+                            {{ $roundedRating > 0 ? $roundedRating : '0' }}
                         </span>
                         
                         @if($totalReviews > 0)
-                            <span class="text-xs text-gray-500">({{ $totalReviews }})</span>
+                            <span class="text-xs text-gray-500">({{ $totalReviews }} ulasan)</span>
                         @else
                             <span class="text-xs text-gray-500">(Belum ada ulasan)</span>
                         @endif
@@ -182,6 +175,14 @@
                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             <span class="text-xs font-medium text-emerald-600">Bersertifikat</span>
+                        </div>
+                    @else
+                        <div class="flex items-center">
+                            <svg class="w-4 h-4 text-red-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <span class="text-xs font-medium text-red-600">Tanpa Sertifikat</span>
                         </div>
                     @endif
                 </div>
@@ -198,7 +199,7 @@
                         </div>
                         <div>
                             <p class="text-xs text-gray-500 font-medium">Metode</p>
-                            <p class="text-sm font-semibold text-gray-900">{{ $kursus->metode ?? 'Online' }}</p>
+                            <p class="text-xs font-semibold text-gray-900">{{ $kursus->metode ?? 'Online' }}</p>
                         </div>
                     </div>
 
@@ -214,7 +215,7 @@
                         </div>
                         <div>
                             <p class="text-xs text-gray-500 font-medium">Lokasi</p>
-                            <p class="text-sm font-semibold text-gray-900">{{ $kursus->lokasi ?? 'Fleksibel' }}</p>
+                            <p class="text-xs font-semibold text-gray-900">{{ $kursus->lokasi ?? 'Fleksibel' }}</p>
                         </div>
                     </div>
                 </div>
@@ -223,12 +224,12 @@
                 <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl">
                     <div class="flex items-center space-x-4">
                         <div class="text-center">
-                            <p class="text-lg font-bold text-indigo-600">{{ $kursus->siswa_terdaftar ?? 0 }}</p>
+                            <p class="text-sm font-bold text-indigo-600">{{ $kursus->siswa_terdaftar ?? 0 }}</p>
                             <p class="text-xs text-gray-600">Terdaftar</p>
                         </div>
                         <div class="w-px h-8 bg-gray-300"></div>
                         <div class="text-center">
-                            <p class="text-lg font-bold text-gray-700">{{ $kursus->jumlah_siswa ?? 0 }}</p>
+                            <p class="text-sm font-bold text-gray-700">{{ $kursus->jumlah_siswa ?? 0 }}</p>
                             <p class="text-xs text-gray-600">Kapasitas</p>
                         </div>
                     </div>
@@ -238,8 +239,8 @@
                         $progress = $kursus->jumlah_siswa > 0 ? (($kursus->siswa_terdaftar ?? 0) / $kursus->jumlah_siswa) * 100 : 0;
                     @endphp
                     <div class="flex-1 ml-4">
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-2 rounded-full transition-all duration-300" 
+                        <div class="w-full bg-gray-200 rounded-full h-1">
+                            <div class="bg-gradient-to-r from-indigo-500 to-purple-600 h-1 rounded-full transition-all duration-300" 
                                  style="width: {{ min($progress, 100) }}%"></div>
                         </div>
                         <p class="text-xs text-gray-500 mt-1 text-right">{{ number_format($progress, 0) }}% penuh</p>
@@ -247,23 +248,29 @@
                 </div>
 
                 <!-- Action Button -->
-                <div class="pt-2">
+                <div class="flex items-center justify-between pt-4 gap-3">
+                    <!-- Harga -->
+                    <span class="text-2xl font-bold text-indigo-600">
+                        <span class="text-sm">IDR </span>
+                        {{ number_format($kursus->harga ?? 0, 0, ',', '.') }}
+                    </span>
+
+                    <!-- Tombol Lihat Detail -->
                     <a href="{{ route('kursus.show', $kursus->id) }}"
-                        class="group/btn relative w-full inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl hover:from-indigo-700 hover:to-purple-700 transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl overflow-hidden">
+                        class="relative inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 hover:from-indigo-700 hover:to-purple-700 hover:scale-[1.03] shadow-lg hover:shadow-xl group">
                         
-                        <!-- Button background animation -->
-                        <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
-                        
-                        <!-- Button content -->
-                        <span class="relative flex items-center space-x-2">
-                            <span>Lihat Detail</span>
-                            <svg class="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform duration-200" 
-                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                        </span>
+                        <span class="relative z-10">Lihat Detail</span>
+                        <svg class="w-4 h-4 transition-transform duration-200 transform group-hover:translate-x-1" 
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+
+                        <!-- Hover overlay animation -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </a>
                 </div>
+
             </div>
 
             <!-- Hover Effect Gradient -->

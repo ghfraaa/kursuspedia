@@ -10,13 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('kursuses', function (Blueprint $table) {
-            // Hapus foreign key constraint terlebih dahulu
-            $table->dropForeign(['pengajar_id']);
+        // Schema::table('kursuses', function (Blueprint $table) {
+        //     // Hapus foreign key constraint terlebih dahulu
+        //     $table->dropForeign(['pengajar_id']);
 
-            // Lalu hapus kolomnya
-            $table->dropColumn('pengajar_id');
-        });
+        //     // Lalu hapus kolomnya
+        //     $table->dropColumn('pengajar_id');
+        // });
     }
 
     /**
@@ -24,8 +24,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('kursuses', function (Blueprint $table) {
-            $table->foreignId('pengajar_id')->constrained('users')->onDelete('cascade');
-        });
+        // Schema::table('kursuses', function (Blueprint $table) {
+        //     $table->foreignId('pengajar_id')->constrained('users')->onDelete('cascade');
+        // });
     }
 };
