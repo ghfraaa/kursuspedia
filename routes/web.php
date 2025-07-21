@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KursusController;
-use App\Http\Controllers\ManKursusController;
+use App\Http\Controllers\Admin\ManKursusController;
 use App\Models\Kursus;
 Use App\Http\Controllers\ReviewController;
 
@@ -41,8 +41,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/{kursus}', [ManKursusController::class, 'show'])->name('show');
         Route::get('/{kursus}/edit', [ManKursusController::class, 'edit'])->name('edit');
         Route::put('/{kursus}', [ManKursusController::class, 'update'])->name('update');
-        Route::delete('/{kursus}', [ManKursusController::class, 'destroy'])->name('destroy');
-        Route::get('/export/csv', [ManKursusController::class, 'export'])->name('export');
+        Route::delete('/{kursus}', [MAnKursusController::class, 'destroy'])->name('destroy');
+        Route::get('/export/csv', [MAnKursusController::class, 'export'])->name('export');
     });
     
     // Route untuk manajemen transaksi

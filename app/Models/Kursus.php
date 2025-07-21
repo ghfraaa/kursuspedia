@@ -20,7 +20,8 @@ class Kursus extends Model
         'harga',
         'sertifikat',
         'siswa_terdaftar',
-        'jumlah_siswa'
+        'jumlah_siswa',
+        'grupwa_link'
     ];
 
     public function reviews()

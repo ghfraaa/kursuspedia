@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Kursus;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -22,16 +23,16 @@ class AdminController extends Controller
         $kursusPopuler = Kursus::orderBy('siswa_terdaftar', 'desc')->take(5)->get();
         
         // Ambil user terbaru
-        $userTerbaru = User::where('role', 'user')->latest()->take(5)->get();
+        $transaksiTerbaru = Transaction::with(['kursus', 'user'])
+                                        ->latest()
+                                        ->take(5)
+                                        ->get();
         
         // Ambil semua kursus untuk tabel
-        $semuaKursus = Kursus::latest()->take(10)->get();
+        $semuaKursus = Kursus::latest()->take(4)->get();
         
-        // Data untuk chart pendaftaran bulanan dari tabel transactions
-        // Coba beberapa kemungkinan nama kolom status
-        $statusColumn = 'status'; // bisa juga 'transaction_status', 'payment_status', dll
-        $statusValue = 'completed'; // bisa juga 'success', 'paid', 'confirmed', dll
         
+        // Data untuk chart pendaftaran bulanan dari tabel transactions dengan status "diterima"
         try {
             $monthlyTransactions = DB::table('transactions')
                 ->select(
@@ -39,20 +40,32 @@ class AdminController extends Controller
                     DB::raw('MONTH(created_at) as month'),
                     DB::raw('COUNT(*) as total')
                 )
+                ->where('status', 'diterima') // Filter berdasarkan status "diterima"
                 ->where('created_at', '>=', now()->subMonths(11))
-                // Comment dulu filter status untuk debug
-                // ->where($statusColumn, $statusValue)
                 ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
                 ->orderBy('year', 'asc')
                 ->orderBy('month', 'asc')
                 ->get();
         } catch (\Exception $e) {
-            // Jika ada error, gunakan data kosong
-            $monthlyTransactions = collect();
+            // Jika ada error, coba dengan nama kolom status yang berbeda
+            try {
+                $monthlyTransactions = DB::table('transactions')
+                    ->select(
+                        DB::raw('YEAR(created_at) as year'),
+                        DB::raw('MONTH(created_at) as month'),
+                        DB::raw('COUNT(*) as total')
+                    )
+                    ->where('transaction_status', 'diterima')
+                    ->where('created_at', '>=', now()->subMonths(11))
+                    ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
+                    ->orderBy('year', 'asc')
+                    ->orderBy('month', 'asc')
+                    ->get();
+            } catch (\Exception $e2) {
+                // Jika masih error, gunakan data kosong
+                $monthlyTransactions = collect();
+            }
         }
-
-        // Debug: uncomment untuk melihat data
-        // dd($monthlyTransactions);
 
         // Inisialisasi array untuk 12 bulan terakhir
         $months = [];
@@ -61,9 +74,9 @@ class AdminController extends Controller
         
         for ($i = 11; $i >= 0; $i--) {
             $date = now()->subMonths($i);
-            $months[] = $date->format('M Y'); // Tambah tahun untuk clarity
+            $months[] = $date->format('M Y');
             $monthlyData[] = 0;
-            $monthKeys[$date->format('Y-n')] = count($monthKeys); // key => index
+            $monthKeys[$date->format('Y-n')] = count($monthKeys);
         }
 
         // Isi data aktual dari database
@@ -114,7 +127,7 @@ class AdminController extends Controller
             'totalSiswaTerdaftar', 
             'totalPendapatan',
             'kursusPopuler',
-            'userTerbaru',
+            'transaksiTerbaru',
             'semuaKursus',
             'monthlyChartData',
             'categoryChart'

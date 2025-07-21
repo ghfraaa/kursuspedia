@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Transaction; // Corrected: Use singular 'Transaction'
+use App\Models\Transaction;
 use App\Models\Kursus;
 
 class UserController extends Controller
@@ -13,17 +13,34 @@ class UserController extends Controller
     {
         // Pastikan user sudah login
         if (!Auth::check()) {
-            // Jika tidak login, arahkan ke halaman login atau home
-            return redirect()->route('login'); // Atau return view('home.index');
+            return redirect()->route('login');
         }
 
         // Ambil transaksi yang dimiliki oleh user yang sedang login
-        // Dengan eager loading 'kursus' untuk mendapatkan detail kursus
         $transactions = Auth::user()->transactions()->with('kursus')->get();
 
-        // Anda juga bisa mengambil semua kursus jika diperlukan di dashboard
+        // Hitung statistik untuk dashboard cards
+        $totalPembelian = $transactions->count();
+        
+        // Transaksi yang diterima (status: paid/completed/success)
+        $transaksiDiterima = $transactions->whereIn('status', 'diterima')->count();
+        
+        // Transaksi yang belum dibayar (status: pending/unpaid)
+        $transaksiBelumBayar = $transactions->whereIn('status', 'belum_dibayar')->count();
+        
+        // Transaksi menunggu konfirmasi (status: waiting_confirmation)
+        $menungguKonfirmasi = $transactions->where('status', 'pending')->count();
+
+        // Ambil semua kursus jika diperlukan
         $kursuses = Kursus::all();
 
-        return view('dashboard', compact('transactions', 'kursuses'));
+        return view('dashboard', compact(
+            'transactions', 
+            'kursuses', 
+            'totalPembelian',
+            'transaksiDiterima',
+            'transaksiBelumBayar',
+            'menungguKonfirmasi'
+        ));
     }
 }

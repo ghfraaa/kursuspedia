@@ -53,29 +53,29 @@
                             class="bg-[linear-gradient(to_right,_#4f46e5,_#a855f7)] text-white p-5 rounded-2xl shadow-2xl pulse-glow">
                             <div class="flex items-center space-x-3">
                                 <div class="flex space-x-1">
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                    </svg>
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                    </svg>
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                    </svg>
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                    </svg>
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                    </svg>
+                                    @php
+                                        $fullStars = floor($averageRating ?? 0); 
+                                        $emptyStars = 5 - $fullStars; 
+                                    @endphp
+
+                                    {{-- Render full stars --}}
+                                    @for ($i = 0; $i < $fullStars; $i++)
+                                        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                        </svg>
+                                    @endfor
+
+                                    {{-- Render empty stars (or greyed out stars) --}}
+                                    @for ($i = 0; $i < $emptyStars; $i++)
+                                        <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24"> 
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                        </svg>
+                                    @endfor
                                 </div>
                                 <div class="text-right">
-                                    <div class="font-black text-xl">4.8/5</div>
+                                    <div class="font-black text-xl" data-count="{{ $formattedAverageRating ?? '0.0' }}">
+                                        {{ $formattedAverageRating ?? '0.0' }}/5
+                                    </div>
                                     <div class="text-sm opacity-90 font-medium">Rating</div>
                                 </div>
                             </div>
@@ -251,9 +251,10 @@
                 </div>
             </div>
             <div class="text-center group">
-                <div
-                    class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
-                    <div class="text-4xl font-bold text-purple-600 mb-2" data-count="95">0</div>
+                <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
+                    <div class="text-4xl font-bold text-purple-600 mb-2" data-count="{{ $satisfactionPercentage ?? 0 }}">
+                        {{ $satisfactionPercentage ?? 0 }}
+                    </div>
                     <p class="text-gray-600 font-semibold">% Tingkat Kepuasan</p>
                 </div>
             </div>

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kursus;
 use Illuminate\Support\Facades\Storage;
@@ -82,7 +83,8 @@ class ManKursusController extends Controller
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',
             'harga' => 'required|numeric|min:0',
             'sertifikat' => 'required|boolean',
-            'jumlah_siswa' => 'required|integer|min:1'
+            'jumlah_siswa' => 'required|integer|min:1',
+            'grupwa_link' => 'required|string|max:100'
         ]);
 
         $data = $request->all();
@@ -162,7 +164,8 @@ class ManKursusController extends Controller
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',
             'harga' => 'required|numeric|min:0',
             'sertifikat' => 'required|boolean',
-            'jumlah_siswa' => 'required|integer|min:1|min:' . $kursus->siswa_terdaftar
+            'jumlah_siswa' => 'required|integer|min:1|min:' . $kursus->siswa_terdaftar,
+            'grupwa_link' => 'required|string|max:100'
         ]);
 
         $data = $request->all();

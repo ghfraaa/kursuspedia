@@ -218,7 +218,7 @@
         <!-- Statistics Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <!-- Total Kursus -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-xl shadow-sm border border-blue-200 p-6 hover:shadow-md transition-shadow">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-600">Total Kursus</p>
@@ -235,7 +235,7 @@
             </div>
 
             <!-- Total Users -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-xl shadow-sm border border-green-200 p-6 hover:shadow-md transition-shadow">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-600">Total Pengguna</p>
@@ -252,7 +252,7 @@
             </div>
 
             <!-- Total Siswa Terdaftar -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-xl shadow-sm border border-yellow-200 p-6 hover:shadow-md transition-shadow">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-600">Siswa Terdaftar</p>
@@ -268,7 +268,7 @@
             </div>
 
             <!-- Total Pendapatan -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-xl shadow-sm border border-purple-200 p-6 hover:shadow-md transition-shadow">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-600">Total Pendapatan</p>
@@ -293,7 +293,13 @@
             <div class="lg:col-span-2">
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                     <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-semibold text-gray-900">Pendaftaran Bulanan</h3>
+                        <div class="flex items-center">                            
+                            <svg class="mr-2 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-900">Pendaftaran Bulanan</h3>
+                        </div>
+
                         <div class="flex items-center space-x-2">
                             <span
                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
@@ -309,7 +315,12 @@
                 <!-- Category Chart -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mt-6">
                     <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-semibold text-gray-900">Komposisi Kursus Berdasarkan Kategori</h3>
+                        <div class="flex items-center">                            
+                            <svg class="mr-2 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-900">Komposisi Kursus</h3>
+                        </div>
                         <span class="text-sm text-gray-500">Total: {{ $totalKursus }} kursus</span>
                     </div>
                     <div class="flex items-center justify-center" style="height: 300px;">
@@ -321,7 +332,12 @@
             <!-- Kursus Populer -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                 <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900">Kursus Populer</h3>
+                    <div class="flex items-center">                            
+                        <svg class="mr-2 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+                        </svg>
+                        <h3 class="text-lg font-semibold text-gray-900">Kursus Populer</h3>
+                    </div>
                     <a href="{{ route('admin.kursus.index') }}"
                         class="text-blue-600 hover:text-blue-800 text-sm font-medium">Lihat Semua</a>
                 </div>
@@ -353,8 +369,13 @@
             <!-- Tabel Kursus -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                 <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900">Data Kursus Terbaru</h3>
-                    <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Kelola Kursus</button>
+                    <div class="flex items-center">                            
+                        <svg class="mr-2 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                        </svg>
+                        <h3 class="text-lg font-semibold text-gray-900">Kursus Terbaru</h3>
+                    </div>
+                    <a href="{{ route('admin.kursus.index') }}" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Kelola Kursus</a>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
@@ -395,41 +416,75 @@
                 </div>
             </div>
 
-            <!-- Tabel User -->
+            <!-- Tabel Transaksi -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                 <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900">User Terbaru</h3>
-                    <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Kelola User</button>
+                    <div class="flex items-center">                            
+                        <svg class="mr-2 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <h3 class="text-lg font-semibold text-gray-900">Transaksi Terbaru</h3>
+                    </div>
+                    <a href="{{ route('admin.transaksi.index') }}" class="text-blue-600 hover:text-blue-800 text-sm font-medium">Kelola Transaksi</a>
                 </div>
-                <div class="space-y-4">
-                    @foreach($userTerbaru as $user)
-                        <div class="flex items-center space-x-4 p-4 rounded-lg hover:bg-gray-50 transition-colors">
-                            <div class="flex-shrink-0">
-                                <div
-                                    class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center">
-                                    <span class="text-white text-sm font-medium">{{ substr($user->name, 0, 1) }}</span>
-                                </div>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900">{{ $user->name }}</p>
-                                <p class="text-xs text-gray-500">{{ $user->email }}</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-xs text-gray-500">{{ $user->created_at->diffForHumans() }}</p>
-                                <span
-                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                    {{ $user->role }}
+                @foreach($transaksiTerbaru as $transaksi)
+                    <div class="flex items-center space-x-4 p-2 rounded-lg hover:bg-gray-50 transition-colors">
+                        <div class="flex-shrink-0">
+                            <div
+                                class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center">
+                                {{-- Pastikan relasi 'kursus' sudah dimuat dan ada --}}
+                                <span class="text-white text-sm font-medium">
+                                    {{ substr($transaksi->kursus->nama ?? 'N/A', 0, 1) }}
                                 </span>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                        <div class="flex-1 min-w-0">
+                            {{-- Nama Kursus --}}
+                            <p class="text-sm font-medium text-gray-900">
+                                {{ $transaksi->kursus->nama ?? 'Kursus Tidak Ditemukan' }}
+                            </p>
+                            {{-- Nama User --}}
+                            <p class="text-xs text-gray-500">
+                                {{ $transaksi->user->name ?? 'User Tidak Ditemukan' }}
+                            </p>
+                        </div>
+                        <div class="text-right">
+                            {{-- Waktu Transaksi --}}
+                            <p class="text-xs text-gray-500">{{ $transaksi->created_at->diffForHumans() }}</p>
+                            {{-- Status Transaksi --}}
+                            <span
+                                class="inline-flex items-center px-2 py-1 rounded-full text-xs
+                                @if($transaksi->status == 'diterima') bg-green-100 text-green-800
+                                @elseif($transaksi->status == 'pending') bg-yellow-100 text-yellow-800
+                                @elseif($transaksi->status == 'belum_dibayar') bg-red-100 text-red-800
+                                @else bg-gray-100 text-gray-800
+                                @endif">
+                                {{ 
+                                    $transaksi->status == 'diterima' ? 'Diterima' : (
+                                        $transaksi->status == 'pending' ? 'Menunggu Konfirmasi' : (
+                                            $transaksi->status == 'belum_dibayar' ? 'Belum Dibayar' : ucfirst($transaksi->status)
+                                        )
+                                    )
+                                }}
+                            </span>
+                        </div>
+                    </div>
+                @endforeach
+                {{-- Jika tidak ada transaksi --}}
+                @if($transaksiTerbaru->isEmpty())
+                    <p class="text-center text-gray-500 py-4">Belum ada transaksi terbaru.</p>
+                @endif
             </div>
         </div>
 
         <!-- Quick Actions -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mt-8">
-            <h3 class="text-lg font-semibold text-gray-900 mb-6">Quick Actions</h3>
+            <div class="flex items-center mb-4">                            
+                <svg class="mr-2 h-6 w-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                </svg>
+                <h3 class="text-lg font-semibold text-gray-900">Aksi Cepat</h3>
+            </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <button
                     class="flex flex-col items-center p-6 rounded-lg border-2 border-dashed border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors group">

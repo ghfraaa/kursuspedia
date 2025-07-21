@@ -21,8 +21,15 @@ class KursusController extends Controller
             ->latest()
             ->limit(6) // Ambil 6 review terbaru untuk 2 slide (3 per slide)
             ->get();
+
+        $averageRating = Review::avg('rating');
+        $formattedAverageRating = number_format($averageRating ?? 0, 1); 
+        $maxRating = 5; 
+        $satisfactionPercentage = ($averageRating / $maxRating) * 100;
         
-        return view('home.index', compact('kursuses', 'testimoni_reviews'));
+        $satisfactionPercentage = round($satisfactionPercentage);
+        
+        return view('home.index', compact('kursuses', 'testimoni_reviews', 'averageRating', 'formattedAverageRating', 'satisfactionPercentage'));
     }
 
     public function show($id)
