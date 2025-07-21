@@ -13,6 +13,10 @@
                     <p class="text-xs text-blue-200">{{ now()->format('H:i') }} WIB</p>
                 </div>
                 <div class="flex space-x-2">
+                    <a href="{{ url('/') }}"
+                        class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded">
+                        Beranda
+                    </a>
                     <a href="{{ route('admin.dashboard') }}"
                         class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded">
                         Dashboard
