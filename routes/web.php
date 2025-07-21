@@ -42,6 +42,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/{kursus}/edit', [ManKursusController::class, 'edit'])->name('edit');
         Route::put('/{kursus}', [ManKursusController::class, 'update'])->name('update');
         Route::delete('/{kursus}', [ManKursusController::class, 'destroy'])->name('destroy');
+        Route::get('/export/csv', [ManKursusController::class, 'export'])->name('export');
     });
     
     // Route untuk manajemen transaksi

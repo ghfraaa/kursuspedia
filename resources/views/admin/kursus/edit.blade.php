@@ -47,6 +47,7 @@
                     <select name="kategori" id="kategori" 
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('kategori') border-red-500 @enderror">
                         <option value="">Pilih Kategori</option>
+<<<<<<< HEAD
                         <option value="Programming" {{ old('kategori') == 'Programming' ? 'selected' : '' }}>Programming</option>
                         <option value="Marketing" {{ old('kategori') == 'Marketing' ? 'selected' : '' }}>Marketing</option>
                         <option value="Language" {{ old('kategori') == 'Language' ? 'selected' : '' }}>Language</option>
@@ -54,6 +55,13 @@
                         <option value="Office" {{ old('kategori') == 'Office' ? 'selected' : '' }}>Office</option>
                         <option value="Photography" {{ old('kategori') == 'Photography' ? 'selected' : '' }}>Photography</option>
                         <option value="Finance" {{ old('kategori') == 'Finance' ? 'selected' : '' }}>Finance</option>
+=======
+                        <option value="Programming" {{ old('kategori', $kursus->kategori) == 'Programming' ? 'selected' : '' }}>Programming</option>
+                        <option value="Marketing" {{ old('kategori', $kursus->kategori) == 'Marketing' ? 'selected' : '' }}>Marketing</option>
+                        <option value="Language" {{ old('kategori', $kursus->kategori) == 'Language' ? 'selected' : '' }}>Language</option>
+                        <option value="Design" {{ old('kategori', $kursus->kategori) == 'Design' ? 'selected' : '' }}>Design</option>
+                        <option value="Business" {{ old('kategori', $kursus->kategori) == 'Business' ? 'selected' : '' }}>Business</option>
+>>>>>>> fixed
                     </select>
                     @error('kategori')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>

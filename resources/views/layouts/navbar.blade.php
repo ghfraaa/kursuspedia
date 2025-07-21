@@ -46,7 +46,7 @@
                                     @csrf
 
                                     <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                                                        this.closest('form').submit();">
+                                                                                this.closest('form').submit();">
                                         {{ __('Log Out') }}
                                     </x-dropdown-link>
                                 </form>
@@ -81,8 +81,7 @@
     </button>
 </nav>
 
-<div class="hidden w-full lg:hidden bg-white fixed top-0 left-0 right-0 z-40 h-screen overflow-y-auto pt-20 pb-4"
-    id="navbar-default">
+<div class="hidden w-full lg:hidden bg-white fixed top-0 left-0 right-0 z-40 h-screen overflow-y-auto pt-20 pb-4" id="navbar-default">
     <ul class="font-medium flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 space-y-2">
         <li><a href="#home" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100">Beranda</a></li>
         <li><a href="#kursus" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100">Kursus</a></li>
@@ -111,7 +110,7 @@
                             @csrf
 
                             <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
+                                                this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-responsive-nav-link>
                         </form>

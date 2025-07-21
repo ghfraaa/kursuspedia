@@ -6,11 +6,11 @@
 @include('layouts.navbar')
 
 <!-- Hero Section with Course Image -->
-<section class="relative py-12 px-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+<section class="relative mt-10 py-12 px-8 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
     <div class="container mx-auto">
         <div class="max-w-6xl mx-auto">
             <!-- Breadcrumb -->
-            <nav class="flex mb-8" aria-label="Breadcrumb">
+            <nav class="flex mb-6" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
                         <a href="{{ url('/') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600">

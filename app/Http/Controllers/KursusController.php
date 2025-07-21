@@ -15,13 +15,13 @@ class KursusController extends Controller
     public function index()
     {
         $kursuses = Kursus::all(); // ambil semua kursus
-
+        
         // Ambil review terbaru untuk testimoni section
         $testimoni_reviews = Review::with(['user', 'kursus'])
             ->latest()
             ->limit(6) // Ambil 6 review terbaru untuk 2 slide (3 per slide)
             ->get();
-
+        
         return view('home.index', compact('kursuses', 'testimoni_reviews'));
     }
 
@@ -60,8 +60,7 @@ class KursusController extends Controller
 
         $all_reviews = $kursus->reviews()->with('user')->latest()->get();
 
-
-        return view('home.partials.show', compact('kursus', 'sudah_terdaftar', 'sudah_memberi_review', 'review_user', 'all_reviews', 'belum_beli', ));
+        return view('home.partials.show', compact('kursus', 'sudah_terdaftar', 'sudah_memberi_review', 'review_user', 'all_reviews', 'belum_beli'));
     }
 
     public function enroll(Request $request, Kursus $kursus)

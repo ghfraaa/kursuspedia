@@ -9,8 +9,8 @@
         <div class="flex items-center space-x-4">
             <div class="hidden md:block">
                 <div class="text-right mb-2">
-                    <p class="text-sm text-blue-100">{{ now()->format('l, d F Y') }}</p>
-                    <p class="text-xs text-blue-200">{{ now()->format('H:i') }} WIB</p>
+                    <p class="text-sm text-blue-100" id="date-display"></p>
+                    <p class="text-xs text-blue-200" id="time-display"></p>
                 </div>
                 <div class="flex space-x-2">
                     <a href="{{ route('admin.dashboard') }}"
@@ -21,49 +21,195 @@
                         class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded">
                         Kelola Kursus
                     </a>
-                    <a href="{{ route('admin.transaksi.index') }}" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded">
+                    <a href="{{ route('admin.transaksi.index') }}"
+                        class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded">
                         Kelola Transaksi
                     </a>
-                    <div class="hidden sm:flex sm:items-center sm:ms-6">
-                        <x-dropdown align="right" width="48">
-                            <x-slot name="trigger">
-                                <button
-                                    class="inline-flex items-center px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded focus:outline-none transition ease-in-out duration-150">
-                                    <div>{{ Auth::user()->name }}</div>
+                    <div class="relative">
+                        <button id="user-dropdown-button"
+                            class="inline-flex items-center px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded focus:outline-none transition ease-in-out duration-150">
+                            <div>{{ Auth::user()->name }}</div>
+                            <div class="ms-1">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </button>
 
-                                    <div class="ms-1">
-                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
+                        <!-- Dropdown Menu -->
+                        <div id="user-dropdown-menu"
+                            class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                            <a href="{{ route('profile.edit') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Profile
+                            </a>
+                            <form method="POST" action="{{ route('logout') }}" class="block">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    Log Out
                                 </button>
-                            </x-slot>
-
-                            <x-slot name="content">
-                                <x-dropdown-link :href="route('profile.edit')">
-                                    {{ __('Profile') }}
-                                </x-dropdown-link>
-
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                                        {{ __('Log Out') }}
-                                    </x-dropdown-link>
-                                </form>
-                            </x-slot>
-                        </x-dropdown>
+                            </form>
+                        </div>
                     </div>
                 </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button"
+                        class="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded focus:outline-none"
+                        aria-label="Toggle menu">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="hidden md:hidden border-t border-blue-500 pt-4 pb-4 px-6">
+                <div class="space-y-2">
+                    <!-- Time Display Mobile -->
+                    <div class="text-center mb-4">
+                        <p class="text-sm text-blue-100" id="mobile-date-display"></p>
+                        <p class="text-xs text-blue-200" id="mobile-time-display"></p>
+                    </div>
 
+                    <a href="{{ route('admin.dashboard') }}"
+                        class="block bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded text-center">
+                        Dashboard
+                    </a>
+                    <a href="{{ route('admin.kursus.index') }}"
+                        class="block bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded text-center">
+                        Kelola Kursus
+                    </a>
+                    <a href="{{ route('admin.transaksi.index') }}"
+                        class="block bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded text-center">
+                        Kelola Transaksi
+                    </a>
+
+                    <!-- Mobile User Menu -->
+                    <div class="border-t border-blue-500 pt-2 mt-4">
+                        <div class="text-center text-white text-sm mb-2">
+                            {{ Auth::user()->name }}
+                        </div>
+                        <div class="space-y-2">
+                            <a href="{{ route('profile.edit') }}"
+                                class="block bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded text-center">
+                                Profile
+                            </a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded">
+                                    Log Out
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Fungsi untuk update waktu real-time dengan zona waktu WIT (Indonesia Timur)
+        function updateTime() {
+            const now = new Date();
+
+            // Convert to WIT (UTC+9) - Indonesia Timur
+            const witOffset = 9 * 60; // WIT is UTC+9
+            const localOffset = now.getTimezoneOffset(); // Get local timezone offset in minutes
+            const witTime = new Date(now.getTime() + (witOffset + localOffset) * 60 * 1000);
+
+            // Format tanggal dalam bahasa Indonesia
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+            const dayName = days[witTime.getDay()];
+            const day = witTime.getDate();
+            const month = months[witTime.getMonth()];
+            const year = witTime.getFullYear();
+
+            // Format waktu
+            const hours = String(witTime.getHours()).padStart(2, '0');
+            const minutes = String(witTime.getMinutes()).padStart(2, '0');
+            const seconds = String(witTime.getSeconds()).padStart(2, '0');
+
+            // Update DOM elements (desktop and mobile)
+            const dateElement = document.getElementById('date-display');
+            const timeElement = document.getElementById('time-display');
+            const mobileDateElement = document.getElementById('mobile-date-display');
+            const mobileTimeElement = document.getElementById('mobile-time-display');
+
+            if (dateElement && timeElement) {
+                dateElement.textContent = `${dayName}, ${day} ${month} ${year}`;
+                timeElement.textContent = `${hours}:${minutes}:${seconds} WIT`;
+            }
+
+            if (mobileDateElement && mobileTimeElement) {
+                mobileDateElement.textContent = `${dayName}, ${day} ${month} ${year}`;
+                mobileTimeElement.textContent = `${hours}:${minutes}:${seconds} WIT`;
+            }
+        }
+
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const userDropdownButton = document.getElementById('user-dropdown-button');
+            const userDropdownMenu = document.getElementById('user-dropdown-menu');
+
+            // Mobile menu toggle
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+
+                    // Toggle icon
+                    const svg = mobileMenuButton.querySelector('svg path');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        svg.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+                    } else {
+                        svg.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+                    }
+                });
+            }
+
+            // User dropdown toggle (desktop)
+            if (userDropdownButton && userDropdownMenu) {
+                userDropdownButton.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    userDropdownMenu.classList.toggle('hidden');
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function () {
+                    if (!userDropdownMenu.classList.contains('hidden')) {
+                        userDropdownMenu.classList.add('hidden');
+                    }
+                });
+
+                userDropdownMenu.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                });
+            }
+
+            // Initialize time and set interval for real-time updates
+            updateTime();
+            setInterval(updateTime, 1000); // Update every second
+
+            // Close mobile menu when window is resized to desktop size
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= 768 && mobileMenu) { // 768px is md breakpoint
+                    mobileMenu.classList.add('hidden');
+                    const svg = mobileMenuButton.querySelector('svg path');
+                    svg.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+                }
+            });
+        });
+    </script>
 @endsection
 
 
@@ -127,7 +273,8 @@
                     <div>
                         <p class="text-sm font-medium text-gray-600">Total Pendapatan</p>
                         <p class="text-2xl font-bold text-gray-900 mt-1">Rp
-                            {{ number_format($totalPendapatan, 0, ',', '.') }}</p>
+                            {{ number_format($totalPendapatan, 0, ',', '.') }}
+                        </p>
                     </div>
                     <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                         <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -154,7 +301,20 @@
                             </span>
                         </div>
                     </div>
-                    <canvas id="monthlyChart" width="400" height="200"></canvas>
+                    <div style="height: 200px;">
+                        <canvas id="monthlyChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Category Chart -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mt-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold text-gray-900">Komposisi Kursus Berdasarkan Kategori</h3>
+                        <span class="text-sm text-gray-500">Total: {{ $totalKursus }} kursus</span>
+                    </div>
+                    <div class="flex items-center justify-center" style="height: 300px;">
+                        <canvas id="categoryChart" width="400" height="300"></canvas>
+                    </div>
                 </div>
             </div>
 
@@ -321,47 +481,127 @@
     <!-- Chart.js Script -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Chart Configuration
-        // const ctx = document.getElementById('monthlyChart').getContext('2d');
-        // const monthlyChart = new Chart(ctx, {
-        //     type: 'line',
-        //     data: {
-        //         labels: @json($monthlyData['labels']),
-        //         datasets: [{
-        //             label: 'Pendaftaran',
-        //             data: @json($monthlyData['data']),
-        //             borderColor: 'rgb(59, 130, 246)',
-        //             backgroundColor: 'rgba(59, 130, 246, 0.1)',
-        //             tension: 0.4,
-        //             fill: true,
-        //             pointBackgroundColor: 'rgb(59, 130, 246)',
-        //             pointBorderColor: '#fff',
-        //             pointBorderWidth: 2,
-        //             pointRadius: 6
-        //         }]
-        //     },
-        //     options: {
-        //         responsive: true,
-        //         maintainAspectRatio: false,
-        //         plugins: {
-        //             legend: {
-        //                 display: false
-        //             }
-        //         },
-        //         scales: {
-        //             y: {
-        //                 beginAtZero: true,
-        //                 grid: {
-        //                     color: 'rgba(0, 0, 0, 0.05)'
-        //                 }
-        //             },
-        //             x: {
-        //                 grid: {
-        //                     display: false
-        //                 }
-        //             }
-        //         }
-        //     }
-        // });
+        document.addEventListener('DOMContentLoaded', function () {
+            // Monthly Chart Configuration
+            const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+            const monthlyChart = new Chart(monthlyCtx, {
+                type: 'line',
+                data: {
+                    labels: @json($monthlyChartData['labels']),
+                    datasets: [{
+                        label: 'Pendaftaran',
+                        data: @json($monthlyChartData['data']),
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: 'rgb(59, 130, 246)',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            cornerRadius: 8,
+                            displayColors: false,
+                            callbacks: {
+                                title: function (context) {
+                                    return 'Bulan ' + context[0].label;
+                                },
+                                label: function (context) {
+                                    return context.parsed.y + ' siswa terdaftar';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                color: '#6B7280'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#6B7280'
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+
+            // Category Chart Configuration
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            const categoryChart = new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: @json($categoryChart['labels']),
+                    datasets: [{
+                        data: @json($categoryChart['data']),
+                        backgroundColor: @json($categoryChart['colors']),
+                        borderWidth: 0,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                font: {
+                                    size: 12
+                                },
+                                color: '#6B7280'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            cornerRadius: 8,
+                            displayColors: true,
+                            callbacks: {
+                                label: function (context) {
+                                    const label = context.label || '';
+                                    const value = context.parsed;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return label + ': ' + value + ' kursus (' + percentage + '%)';
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+        });
     </script>
 @endsection

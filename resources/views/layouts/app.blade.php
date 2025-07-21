@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'KursusPedia') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -35,7 +35,7 @@
 
         <!-- Page Heading -->
         @hasSection('header')
-            <header class="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 shadow-lg">
+            <header class="sticky top-0 z-50 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-600 shadow-lg">
                 <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
                     @yield('header')
                 </div>
